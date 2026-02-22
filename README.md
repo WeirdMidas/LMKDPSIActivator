@@ -1,26 +1,15 @@
-# Lmkdopt Add-on
-An extension for SkyScene Add-on that optimizes LMKD and Old LMK. It modernizes memory management to prioritize dynamic multitasking over aggressive killing, tailoring performance to both legacy and modern device capabilities.
+# Dudu Sky Add-on
+An extension of the SkyScene Add-on, where it achieves the effect of preventing background apps from dying by modifying memory management mechanisms (lmk, psi). And by improving background process management, it's possible to achieve a smoother and more energy-efficient system.
 
 If you want an optimization that improves the kernel's memory management behavior, check out the [SkyScene Add-on](https://github.com/WeirdMidas/SkySceneAddon), it specifically handles this aspect, such as swapping, reclaim, and others.
 
 ### Features
 
-#### LMKD-Side (Modern Solution)
-- Use PSI as the main killing method for LMKD. Abandon solutions like Minfree and focus on dynamic solutions that can respect the multitasking needs of modern devices with fewer false positives. With this, our LMKD has as few false positives as possible, reducing the need for LMKD intervention and allowing kswapd/ZRAM to handle memory management for longer (as the SkyScene Add-on proposes in its readme).
-  - Do not tamper with minfree or, if the device uses it, with new strategy or dynamic pressure, allowing older devices to retain their settings while receiving improvements in other parts of LMKD, which improves compatibility with what the ROM/Manufacturer delivers on their devices.
-- By opting for the full use of the PSI mechanism, adapt the parameters of light and full stalls, thrashing, and other parameters based on the processor's capacity. This means that processors with small core clocks (which will be the measure used) below 1.7GHz, even if they are "high performance," can tolerate the same amount of crashes as a 1.9GHz "low memory" processor. This means that PSI adapts according to the processor's capacity to handle the number of processes requesting memory, always avoiding noticeable and irritating crashes, which is our goal: to tolerate multitasking before the user gets annoyed.
-- Change the LMKD thrashing parameters based on two variables:
-  - Whether the device has MGLRU.
-  - Whether the device has 6GB or less RAM.
-  - Based on this, we can adapt our thrashing parameters based on how efficient the swapping management is, making LMKD less likely to interfere with system apps as the swapping management is able to handle the situation.
-- Pin a memory recycling thread "oom_reaper" on the big/prime cores to allow the cleanup of dead processes to occur immediately and without waiting, drastically reducing system contention time.
-- Configure ZRAM thresholds based on the algorithm used. This means that devices using lz4, in addition to a 3.1x compression rate (the current Android standard), can also keep more data in memory because lz4 is so fast that we experience little impact when ZRAM is near full (where LMKD starts monitoring at 95-90% ZRAM usage). Other algorithms also have this configuration, even custom ones like lz4hc and lz4kd, allowing LMKD to adapt perfectly to the device's ZRAM configuration.
+#### LMKD-Side (Modern Solution / Android 11+)
+- Texto, Texto, Texto
 
-#### Old LMK-Side (Old Solution)
-- Make the minfree margin smoother and more predictable, avoid generating free memory abruptly, allowing older devices to use as much memory as possible before needing to clear everything, favoring the longevity of multitasking.
-- Prefer the old lmk oom_reaper over the traditional kernel oom_reaper, allowing the old lmk to have an oom_reaper that respects it and is more agile.
-- Avoid using the adaptive Old LMK; it is unpredictable and can generate more false positives than it necessarily allows for better memory management.
-  - Disable batch kill methods and other OEM functionalities, reducing the need for LMK to act in a stupid and naive way.
+#### Old LMK-Side (Old Solution / Android 10-)
+- Texto, Texto, Texto
   
 ## Requirement
 
@@ -33,7 +22,7 @@ If you want an optimization that improves the kernel's memory management behavio
 
 ## Installation
 
-- Simply install the module and enjoy; optimizations will be applied automatically according to your device's capabilities. Currently, there are no configuration options via the control panel, but perhaps that will be available in the future.
+- Install this module, restart your phone, and open `/sdcard/Android/lmk_conf.txt` after rebooting to modify how much swap you want LMKD to handle before it starts looking for kills, the wait time before killing or not, and other LMKD or Old LMK parameters (if available). This will take effect after rebooting.
 - Simple LMK is currently not supported.
 - Per-Process LMK is currently not supported.
 
