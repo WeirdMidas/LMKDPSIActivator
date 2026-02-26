@@ -1,4 +1,7 @@
-# LMKD PSI Activation + Misc
+# LMKD PSI Activation
+
+## An efficient system, stable — even under pressure or when it needs to act
+
 An extension of the SkyScene Add-on, where it achieves the effect of preventing background apps from dying by modifying memory management mechanisms (lmk, psi). And by improving background process management, it's possible to achieve a smoother and more energy-efficient system.
 
 If you want an optimization that improves the kernel's memory management behavior, check out the [SkyScene Add-on](https://github.com/WeirdMidas/SkySceneAddon), it specifically handles this aspect, such as swapping, reclaim, and others.
@@ -8,6 +11,8 @@ If you want an optimization that improves the kernel's memory management behavio
 - Utilize lmkd's modern pressure mechanism, PSI (pressure stall information), allowing lmkd to kill background processes based on whether the system can handle keeping them running in memory. It doesn't depend on fixed thresholds or anything like that
   - Based on hardware differences, not as a "one formula" for everyone, differentiate lmkd parameters based on hardware and others, allowing each device to have its efficiency respected
 - Improve oom reaper scheduling, make it execute with the policies we want, as in the foreground cpuset and with the affinity in the big/prime cores, reducing the stalls that occur when killing a process in the background
+- Avoid stalls as much as possible, in addition to maintaining efficient and stable multitasking, reducing lmkd interventions and energy costs for each killing action
+- SELinux can still be enabled
 
 ## Requirement
 
@@ -24,6 +29,7 @@ If you want an optimization that improves the kernel's memory management behavio
 - Simple LMK is currently not supported.
 - Per-Process LMK is currently not supported.
 - Old LMK is currently not supported.
+- Other customizable LMKs are not compatible, only lmkd is compatible.
 
 ## FAQ
 
