@@ -40,7 +40,7 @@ It was intended to be a fork of [LMKD-PSI-Activator](https://github.com/lululoid
 - Per-Process LMK is currently not supported
 - Old LMK is currently not supported
 - Other customizable LMKs are not compatible, only lmkd is compatible
-- Devices with 2GB of RAM or less are GO devices, 3GB-4GB of RAM are low-memory, 6GB-8GB is mid-tier, and 12GB or more is high-performance
+- Devices with 2GB of RAM or less are GO devices, 3GB-4GB of RAM are low-end, 6GB-8GB is mid-tier, and 12GB or more is high-performance
 
 ## FAQ
 
